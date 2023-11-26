@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    image: pyqt6:alone
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    environment:
+      - PYTHONPATH=/usr/src/app
+      - DISPLAY=${DISPLAY}
+      - QT_QPA_PLATFORM=xcb
+    volumes:
+      - ..:/usr/src/app
+      - /tmp/.X11-unix/:/tmp/.X11-unix/
+    ports:
+      - "8000:8000"
