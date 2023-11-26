@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: pyqt6:alone
+    image: dasycarpum/pyqt6:alone
     build:
       context: ../
       dockerfile: docker/Dockerfile
