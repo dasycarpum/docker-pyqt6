@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: dasycarpum/pyqt6:alone
+    image: dasycarpum/pyqt6:postgresql
     user: qtuser
     build:
       context: ../
