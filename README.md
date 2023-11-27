@@ -15,7 +15,7 @@ Docker files for development of GUI applications with Python 3 + PyQt6, and opti
 ## Docker Hub Repository
 Visit the [docker-pyqt6 Docker Hub Repository](https://hub.docker.com/repository/docker/dasycarpum/pyqt6/general) for more details and image downloads.
 
-## How to use v1.0.0 on Linux
+## How to use v1 on Linux
 *Tested on Ubuntu 22.04*
 
 ### Prerequisites
@@ -29,9 +29,24 @@ You can test if everything works with a small testing application. Follow these 
     - `docker-app-1` is the name of your Docker container.
     - To revert this permission, use `xhost -local:docker-app-1`.
 
-2. **Start the Docker Container**:
+2a. **Start the Docker Container with Docker Compose**:
     - Navigate to the directory containing your `docker-compose.yml`.
     - Run `docker-compose up -d` to start the container.
+
+2b. **Alternatively, Start the Container directly from the Docker Image**   
+    To run the container, use the following command:
+
+```bash
+docker run --rm -it \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e PYTHONPATH=/usr/src/app \
+    -e DISPLAY=$DISPLAY \
+    -e QT_QPA_PLATFORM=xcb \
+    -u qtuser \
+    dasycarpum/pyqt6:alone
+```
+(To copy the code, click on the code block and press `Ctrl+C` on your keyboard.)
+
 
 You should see a window similar to this :
 
