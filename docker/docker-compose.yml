@@ -3,6 +3,7 @@ version: '3.8'
 services:
   app:
     image: dasycarpum/pyqt6:alone
+    user: qtuser
     build:
       context: ../
       dockerfile: docker/Dockerfile

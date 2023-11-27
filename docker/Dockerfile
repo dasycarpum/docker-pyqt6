@@ -6,6 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive \
     LIBGL_ALWAYS_INDIRECT=1 \
     QT_DEBUG_PLUGINS=1
 
+# Add user
+RUN apt-get update && apt-get install -y adduser \
+    && adduser --quiet --disabled-password --gecos '' qtuser \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
