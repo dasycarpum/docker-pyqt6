@@ -17,7 +17,12 @@ WORKDIR /usr/src/app
 # Install Python 3 and PyQt6
 RUN apt-get update && apt-get install -y \
     python3-pyqt6 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
 
 # Copy the application code into the container
 COPY src/ ./src/

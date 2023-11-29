@@ -2,17 +2,38 @@ version: '3.8'
 
 services:
   app:
-    image: dasycarpum/pyqt6:alone
+    image: dasycarpum/pyqt6:postgresql
+    env_file:
+      - .env
     user: qtuser
     build:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
       - PYTHONPATH=/usr/src/app
+      - DATABASE_URL=${DATABASE_URI}
       - DISPLAY=${DISPLAY}
       - QT_QPA_PLATFORM=xcb
     volumes:
       - ..:/usr/src/app
       - /tmp/.X11-unix/:/tmp/.X11-unix/
+    depends_on:
+      - db
     ports:
       - "8000:8000"
+
+  db:
+    image: postgres:13
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  # Optional: Expose PostgreSQL port (remove in production)
+
+volumes:
+  pgdata:
