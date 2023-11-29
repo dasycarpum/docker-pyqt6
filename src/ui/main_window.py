@@ -75,10 +75,10 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
 
         db_session = SessionLocal()
         try:
-            authenticated = login_example(db_session, login, password)
+            authenticated, phrase_f, phrase_e = login_example(db_session, login, password)
             self.authentication_success.emit(authenticated)
             if authenticated:
-                self.textBrowser_phrase.setText("OK")
+                self.textBrowser_phrase.setText(phrase_f + '\n\n' + phrase_e)
         except AuthenticationException as e:
             QMessageBox.warning(self, "Login Failed", str(e))
             self.authentication_success.emit(False)

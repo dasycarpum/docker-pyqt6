@@ -51,4 +51,4 @@ def login_example(db_session: Session, login: str, password: str) -> bool:
     if example.password != password:
         raise AuthenticationException("Login failed: Incorrect password.")
 
-    return True
+    return True, example.phrase_french, example.phrase_english

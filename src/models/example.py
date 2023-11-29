@@ -25,7 +25,7 @@ class Example(Base):
         login (str): unique identifier, serves as the primary key
         password (str): password for the user
         phrase_french (str): french phrase after authentication
-        phrase_english (str): french phrase after authentication
+        phrase_english (str): english phrase after authentication
 
     """
     __tablename__ = 'example'
