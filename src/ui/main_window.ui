@@ -6,15 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>653</width>
-    <height>401</height>
+    <width>1000</width>
+    <height>630</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1000</width>
+    <height>630</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1000</width>
+    <height>630</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>docker-pyqt6</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,2,1,1">
     <item row="1" column="0">
      <widget class="QLabel" name="label_login">
       <property name="minimumSize">
@@ -23,23 +35,20 @@
         <height>0</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
       <property name="text">
        <string>Login :</string>
       </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="3">
-     <widget class="QLabel" name="label_title">
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Hello Docker, PyQt6 and PostgreSQL !</string>
-      </property>
       <property name="alignment">
-       <set>Qt::AlignCenter</set>
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
@@ -53,22 +62,18 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="2" rowspan="4">
+    <item row="1" column="2" rowspan="2" colspan="3">
      <widget class="QTextBrowser" name="textBrowser_phrase">
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>180</height>
+        <height>100</height>
        </size>
       </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="lineEdit_password">
       <property name="maximumSize">
        <size>
-        <width>200</width>
-        <height>16777215</height>
+        <width>16777215</width>
+        <height>100</height>
        </size>
       </property>
      </widget>
@@ -84,14 +89,90 @@
       <property name="text">
        <string>Password :</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QDialogButtonBox" name="buttonBox">
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit_password">
       <property name="maximumSize">
        <size>
         <width>200</width>
-        <height>50</height>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <widget class="QGroupBox" name="groupBox_matplotlib">
+      <property name="title">
+       <string>Matplotlib</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QWidget" name="widget_matplotlib" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QGroupBox" name="groupBox_seaborn">
+      <property name="title">
+       <string>Seaborn</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QWidget" name="widget_seaborn" native="true"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="3" column="3" colspan="2">
+     <widget class="QGroupBox" name="groupBox_plotly">
+      <property name="title">
+       <string>Plotly</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_plotly"/>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="5">
+     <widget class="QLabel" name="label_title">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Hello Docker, PyQt6, PostgreSQL and plots !</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="5">
+     <widget class="QDialogButtonBox" name="buttonBox">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="cursor">
@@ -101,7 +182,7 @@
        <enum>Qt::RightToLeft</enum>
       </property>
       <property name="orientation">
-       <enum>Qt::Vertical</enum>
+       <enum>Qt::Horizontal</enum>
       </property>
       <property name="standardButtons">
        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
@@ -118,7 +199,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>653</width>
+     <width>1000</width>
      <height>20</height>
     </rect>
    </property>
