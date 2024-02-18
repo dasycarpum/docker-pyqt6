@@ -12,15 +12,17 @@ Created on 2023-11-26
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from plotly.offline import plot
+import plotly.graph_objects as go
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtWebEngineWidgets import QWebEngineView
 import src.ui.main_window_UI as window
 from src.business_logic.authentication import login_example,   AuthenticationException
 from src.dal.database import SessionLocal
 
 
 class MainWindow(QMainWindow, window.Ui_MainWindow):
-    authentication_success = pyqtSignal(bool)
     """Main application window for the PyQt6 application.
 
     This class represents the main window of the application, inheriting from
@@ -35,6 +37,8 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
             Defaults to None, which means no parent widget.
 
     """
+    authentication_success = pyqtSignal(bool)
+
     def __init__(self, parent=None):
         """Initializes the MainWindow instance.
 
@@ -56,6 +60,7 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
 
         self.draw_a_matplotlib_plot()
         self.draw_a_seaborn_bar_plot()
+        self.draw_a_plotly_bar_plot()
 
     def handle_login(self):
         """Handles user login attempts.
@@ -151,4 +156,32 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
         except TypeError as e:
             print(f"Error drawing the seaborn plot: {e}")
             raise
-    
+
+    def draw_a_plotly_bar_plot(self):
+        """Draws a bar plot in the PyQt application using Plotly.
+        
+        This function creates a bar plot using Plotly based on hardcoded x and 
+        y values. It then displays this plot within a QWebEngineView that is 
+        inserted into the existing QVBoxLayout (`verticalLayout_plotly`).
+
+        """
+        # Prepare data
+        data = pd.DataFrame({
+            'x': 0.5 + np.arange(8),
+            'y': [4.8, 5.5, 3.5, 4.6, 6.5, 6.6, 2.6, 3.0]
+        })
+
+        # Create a Plotly figure
+        fig = go.Figure(
+            data=[go.Bar(x=data['x'], y=data['y'],
+            marker_line_color='white', marker_line_width=0.7)])
+
+        # Generate HTML representation of the Plotly figure
+        plot_html = plot(fig, output_type='div', include_plotlyjs='cdn')
+
+        # Create a QWebEngineView to display the HTML
+        webview = QWebEngineView()
+        webview.setHtml(plot_html)
+
+        # Add the QWebEngineView to the QVBoxLayout
+        self.verticalLayout_plotly.addWidget(webview)

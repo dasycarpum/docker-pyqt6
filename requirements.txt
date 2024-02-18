@@ -9,13 +9,17 @@ numpy==1.26.4
 packaging==23.2
 pandas==2.2.0
 pillow==10.2.0
+plotly==5.19.0
 psycopg2-binary==2.9.9
 pyparsing==3.1.1
+PyQt6==6.6.1
+PyQt6-WebEngine==6.6.0
 python-dateutil==2.8.2
 pytz==2024.1
 seaborn==0.13.2
 six==1.16.0
 SQLAlchemy==2.0.27
+tenacity==8.2.3
 typing_extensions==4.9.0
 tzdata==2024.1
 zipp==3.17.0
