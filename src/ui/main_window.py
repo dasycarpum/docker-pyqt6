@@ -9,6 +9,7 @@ Created on 2023-11-26
 
 """
 
+import numpy as np
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from PyQt6.QtCore import pyqtSignal
 import src.ui.main_window_UI as window
@@ -49,12 +50,18 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
         """
         super(MainWindow,self).__init__(parent)
         self.setupUi(self)
-        self.buttonBox.clicked.connect(self.handle_login)
+        self.buttonBox.accepted.connect(self.handle_login)
+
+        self.draw_a_matplotlib_plot()
 
     def handle_login(self):
         """Handles user login attempts.
 
-        This method retrieves the login credentials inputted by the user, attempts to authenticate these credentials, and emits a signal indicating the success or failure of the authentication. If authentication is successful, it updates the UI to reflect this. In case of failure, it displays a warning message box.
+        This method retrieves the login credentials inputted by the user, 
+        attempts to authenticate these credentials, and emits a signal 
+        indicating the success or failure of the authentication. If 
+        authentication is successful, it updates the UI to reflect this. In 
+        case of failure, it displays a warning message box.
 
         It uses a database session to verify credentials and handles any
         `AuthenticationException` that might occur during this process by showing a warning message.
@@ -67,7 +74,8 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
 
         Raises:
             AuthenticationException: If the authentication process fails, this
-                exception is raised and caught within the method to display an error message to the user.
+                exception is raised and caught within the method to display an
+                error message to the user.
 
         """
         login = self.lineEdit_login.text()
@@ -84,3 +92,29 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
             self.authentication_success.emit(False)
         finally:
             db_session.close()
+
+    def draw_a_matplotlib_plot(self):
+        """Draws a bar plot on the Matplotlib canvas within the application.
+
+        This function creates a bar plot using Matplotlib and displays it on 
+        the canvas of a custom QWidget designed to integrate Matplotlib plots 
+        into the application. The data for the plot is hardcoded within the 
+        function, consisting of x and y values representing the bar positions 
+        and heights, respectively.
+
+        Raises:
+            TypeError: If an incorrect argument is passed to the Matplotlib bar 
+            function.
+        """
+        # Data for plotting
+        x = 0.5 + np.arange(8)  # X-axis values
+        y = [4.8, 5.5, 3.5, 4.6, 6.5, 6.6, 2.6, 3.0]  # Y-axis values (heights of the bars)
+
+        # Attempt to create a bar plot
+        try:
+            widget = self.widget_matplotlib  # Reference to the Matplotlib widget in the MainWindow UI
+            self.plot = widget.canvas.ax.bar(
+                x, y, width=1, edgecolor="white", linewidth=0.7)  # Draw the bar plot
+        except TypeError as e:
+            print(f"Error drawing the matplotlib plot: {e}")
+            raise

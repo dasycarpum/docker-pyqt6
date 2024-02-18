@@ -48,7 +48,7 @@ class Ui_MainWindow(object):
         self.groupBox_matplotlib.setObjectName("groupBox_matplotlib")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox_matplotlib)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.widget_matplotlib = QtWidgets.QWidget(parent=self.groupBox_matplotlib)
+        self.widget_matplotlib = MplWidget(parent=self.groupBox_matplotlib)
         self.widget_matplotlib.setObjectName("widget_matplotlib")
         self.verticalLayout.addWidget(self.widget_matplotlib)
         self.gridLayout.addWidget(self.groupBox_matplotlib, 3, 0, 1, 2)
@@ -112,6 +112,7 @@ class Ui_MainWindow(object):
         self.groupBox_seaborn.setTitle(_translate("MainWindow", "Seaborn"))
         self.groupBox_plotly.setTitle(_translate("MainWindow", "Plotly"))
         self.label_title.setText(_translate("MainWindow", "Hello Docker, PyQt6, PostgreSQL and plots !"))
+from src.ui.mplwidget import MplWidget
 
 
 if __name__ == "__main__":

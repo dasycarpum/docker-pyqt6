@@ -111,7 +111,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QWidget" name="widget_matplotlib" native="true"/>
+        <widget class="MplWidget" name="widget_matplotlib" native="true"/>
        </item>
       </layout>
      </widget>
@@ -206,6 +206,14 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MplWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">src.ui.mplwidget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
