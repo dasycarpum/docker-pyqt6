@@ -56,7 +56,7 @@ class Ui_MainWindow(object):
         self.groupBox_seaborn.setObjectName("groupBox_seaborn")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_seaborn)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.widget_seaborn = QtWidgets.QWidget(parent=self.groupBox_seaborn)
+        self.widget_seaborn = MplWidget(parent=self.groupBox_seaborn)
         self.widget_seaborn.setObjectName("widget_seaborn")
         self.verticalLayout_2.addWidget(self.widget_seaborn)
         self.gridLayout.addWidget(self.groupBox_seaborn, 3, 2, 1, 1)

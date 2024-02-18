@@ -10,6 +10,8 @@ Created on 2023-11-26
 """
 
 import numpy as np
+import pandas as pd
+import seaborn as sns
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from PyQt6.QtCore import pyqtSignal
 import src.ui.main_window_UI as window
@@ -53,6 +55,7 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
         self.buttonBox.accepted.connect(self.handle_login)
 
         self.draw_a_matplotlib_plot()
+        self.draw_a_seaborn_bar_plot()
 
     def handle_login(self):
         """Handles user login attempts.
@@ -118,3 +121,34 @@ class MainWindow(QMainWindow, window.Ui_MainWindow):
         except TypeError as e:
             print(f"Error drawing the matplotlib plot: {e}")
             raise
+
+    def draw_a_seaborn_bar_plot(self):
+        """Draws a bar plot on the Matplotlib canvas within the application using Seaborn.
+
+        This function creates a bar plot using Seaborn and displays it on the 
+        canvas of a custom QWidget designed to integrate Matplotlib plots into 
+        the application. It constructs a pandas DataFrame from hardcoded x and 
+        y values representing the bar positions and heights, respectively, and 
+        then uses Seaborn to plot these values.
+
+        Raises:
+            TypeError: If an incorrect argument is passed to the Matplotlib bar 
+            function.
+
+        """
+        # Prepare data in pandas DataFrame
+        data = pd.DataFrame({
+            'x': 0.5 + np.arange(8),
+            'y': [4.8, 5.5, 3.5, 4.6, 6.5, 6.6, 2.6, 3.0]
+        })
+
+        # Attempt to create a bar plot
+        try:
+            widget = self.widget_seaborn # Reference to the Matplotlib widget in the MainWindow UI
+            self.plot = sns.barplot(
+                x='x', y='y', data=data, ax=widget.canvas.ax,
+                edgecolor="white", linewidth=0.7) # Draw the bar plot
+        except TypeError as e:
+            print(f"Error drawing the seaborn plot: {e}")
+            raise
+    
