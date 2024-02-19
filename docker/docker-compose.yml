@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: dasycarpum/pyqt6:postgresql
+    image: dasycarpum/pyqt6:plot
     env_file:
       - .env
     user: qtuser
